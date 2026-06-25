@@ -79,3 +79,13 @@ The data tier is fortified with automated regression suites. To execute the auto
 
 * `update_shouldPersistNewStockValue_inDatabase`: (Bug 2 - Stock Fix):**Validates that inventory modifications (like modifying a Halo 1 Remake's stock value to `72`) explicitly persist across database transactions.
 * <img width="1800" height="1007" alt="Screenshot 2026-06-25 065125" src="https://github.com/user-attachments/assets/36fb4bf7-b898-4012-aa48-da60c4469fd8" />
+
+
+### 💻 Highlighted Logic Resolution (Bug 1)
+
+An interesting piece of code involved the automated integration test used to reseolve the persistent stock defect. This test targets the data access layer directly, ensuring that modifications made to the product models are correctly utilizing this isolated database environment to test logic:
+
+
+<img width="1693" height="732" alt="Screenshot 2026-06-25 073815" src="https://github.com/user-attachments/assets/4df85ca8-5033-426d-ab6a-7e4771874dc8" />
+
+
