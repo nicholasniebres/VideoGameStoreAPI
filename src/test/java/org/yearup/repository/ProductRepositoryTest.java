@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Sql(scripts = "classpath:test-insert-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 class ProductRepositoryTest {
 
-    @Autowired // <-- Fixed: Removed the comment lines so Spring injects this bean!
+    @Autowired
     private ProductRepository productRepository;
 
     @Test
@@ -30,6 +30,8 @@ class ProductRepositoryTest {
         assertEquals(499.99, actual.getPrice(), 0.001, "Because I tried to get product 1 from the database.");
     }
 
+
+
     @Test
     public void update_shouldPersistNewStockValue_inDatabase()
     {
@@ -41,12 +43,12 @@ class ProductRepositoryTest {
         assertNotNull(productToUpdate, "Product 1 should exist in the test-insert-data.sql script");
 
         // 2. Act: Modify the stock and save
-        productToUpdate.setStock(80);
+        productToUpdate.setStock(72);
         productRepository.save(productToUpdate);
 
         // 3. Assert: Pull fresh from DB to ensure persistence
         Product updatedProduct = productRepository.findById(productId).orElse(null);
         assertNotNull(updatedProduct);
-        assertEquals(80, updatedProduct.getStock(), "The test database should successfully update the stock to 80.");
+        assertEquals(72, updatedProduct.getStock(), "The test database should successfully update the stock to 80.");
     }
 }
